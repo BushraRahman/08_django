@@ -1,2 +1,5 @@
-django
-django_vite
+-c main.txt
+
+nodeenv
+pgadmin4
+django-extensions
