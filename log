@@ -3,4 +3,7 @@ Aiden - created ER diagram
 Bushra - Set up requirements_env and created a Django project.
 
 April 10
-Bushra - Connected Django project to postgres, began connecting it to Vue. Error: vite_hmr_client not found in template
+Bushra - Fixed error that was part of the process of connecting Django project to postgres, began connecting it to Vue. Error: vite_hmr_client not found in template
+
+April 11
+Bushra - Connected project to Vue and postgres, created models
