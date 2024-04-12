@@ -8,7 +8,7 @@ class Concert(models.Model):
     # id = models.SmallIntegerField(auto_increment=True, primary_key=True)
     name = models.CharField(max_length=200, unique=True)
     date = models.DateTimeField()
-    venue = models.CharField(max_length=200, unique=True)
+    venue = models.CharField(max_length=200)
     class Meta:
         ordering = ['name']
 
@@ -18,7 +18,7 @@ class Concert(models.Model):
 class Song(models.Model):
     title = models.CharField(max_length=200, unique=True)
     duration = models.TimeField()
-    genre = models.CharField(max_length=50, unique=True)
+    genre = models.CharField(max_length=50)
 
 class Artist(models.Model):
     name = models.CharField(max_length=50, unique=True)

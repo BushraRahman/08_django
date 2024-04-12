@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% load django_vite %}
 {% block content %}
-The template~
+Songs!
+<form method="post">
+    {% csrf_token %}
+<button type='submit'>Load Songs!</button>
 </form>
 <br><br>
 <div id="app">

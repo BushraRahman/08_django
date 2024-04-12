@@ -8,3 +8,6 @@ Bushra - Fixed error that was part of the process of connecting Django project t
 April 11
 Bushra - Connected project to Vue and postgres, created models
 Aiden - had issues with installing packages, spent class time working on that
+
+April 12
+Bushra - Made button (which is on the newly created concerts/songs) that creates instances of the Song model
