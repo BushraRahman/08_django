@@ -3,3 +3,4 @@
 nodeenv
 pgadmin4
 django-extensions
+django_vite
