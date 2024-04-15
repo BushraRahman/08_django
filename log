@@ -11,3 +11,6 @@ Aiden - had issues with installing packages, spent class time working on that
 
 April 12
 Bushra - Made button (which is on the newly created concerts/songs) that creates instances of the Song model
+
+April 15
+Bushra - Added form on concerts/artists that sends a POST request using Vue (but the request doesn't really have a purpose yet...)
