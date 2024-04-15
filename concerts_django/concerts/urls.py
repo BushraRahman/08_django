@@ -6,4 +6,5 @@ app_name = "concerts"
 
 urlpatterns = [
    path("", views.index, name="index"),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
