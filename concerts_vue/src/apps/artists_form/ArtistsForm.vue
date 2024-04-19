@@ -4,33 +4,45 @@
         This is the form coming from django, displayed in vue
     </div>
     <div>
-        <form method="post" class="form">
-            <input type="hidden" name="csrfmiddlewaretoken"
-                   v-bind:value="csrf_token">
-            <p>
-                <label for="id_name">Name:</label>
-                <input type="text" name="name" value="Matrix" maxlength="100" required="" id="id_name">
-            </p>    
-            <button type="submit" class="btn btn-primary"
-@click.prevent="submit_form_fetch"
-:disabled="submitting_form">
-Submit
-</button>               
+        <form method="post"><input type="hidden" name="csrfmiddlewaretoken" value="AGZGQ9DzT9dSLsiu2SDdEmXbTqZJImBLmKbWCndZvTRpkNijmUwb4x9AYDOlfflb">
+        <p>
+    <label for="id_name">Name:</label>
+    <input type="text" name="name" maxlength="50" required="" id="id_name">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_concerts">Concerts:</label>
+    <select name="concerts" required="" id="id_concerts" multiple="">
+</select>
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_songs">Songs:</label>
+    <select name="songs" required="" id="id_songs" multiple="">
+  <option value="1">Song object (1)</option>
+
+  <option value="4">Song object (4)</option>
+
+  <option value="5">Song object (5)</option>
+
+  <option value="6">Song object (6)</option>
+
+</select>
+    
+    
+      
+    
+  </p>
+        <input type="submit" value="Save">
         </form>
     </div>
     <br><br>
-With fetch this time
-<br><br>
-<div v-if="form_error">
-	<ul>
-		<li v-for="(error, index) in form_error">
-			{{error}}
-		</li>
-	</ul>
-</div>
-<div v-if="form_updated">
-	{{ form_updated }}
-</div>
     
 </template>
 
@@ -43,7 +55,6 @@ export default {
   data: function() {
   	return {
 	    	csrf_token: ext_csrf_token,
-	    	update_bis_url: ext_update_bis_url,
 	    	form: ext_form,
             name: null,
             concerts: "joe mama",

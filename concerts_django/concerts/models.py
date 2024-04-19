@@ -7,7 +7,7 @@ class Concert(models.Model):
     # following line
     # id = models.SmallIntegerField(auto_increment=True, primary_key=True)
     name = models.CharField(max_length=200, unique=True)
-    date = models.DateTimeField()
+    date = models.DateField()
     venue = models.CharField(max_length=200)
     class Meta:
         ordering = ['name']

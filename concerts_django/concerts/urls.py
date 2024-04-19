@@ -7,5 +7,6 @@ app_name = "concerts"
 urlpatterns = [
    path("", views.index, name="index"),
    path("songs",views.songsIndex, name="songs"),
-   path("artists",views.ArtistCreatebisView.as_view(), name="artists")
+   path("artists", views.ArtistCreateView.as_view(), name="artists"),
+   path("concerts/", views.concertsIndex, name="concerts")
 ]

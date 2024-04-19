@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from concerts.models import Song
-from concerts.models import Artist
+from concerts.models import Song, Artist, Concert
 from django.views import View
 from .forms import ArtistForm
 from django.views.generic.edit import CreateView
@@ -11,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 @login_required
 def index(request):
-    return render(request, "concerts/concerts_index.html")
+    return render(request, "concerts/index.html")
 
 @login_required
 def songsIndex(request):
@@ -27,22 +26,23 @@ def loadSongs():
         Song.objects.create(title="Pop", duration="00:02:26",genre="RNB").save()
 # Create your views here.
 
-class ArtistCreatebisView(LoginRequiredMixin,View):
-    def post(self, request, *args, **kwargs):
-       artist = get_object_or_404(Artist, pk=self.kwargs["pk"])
-       # Create a form instance with POST data
-       form = ArtistForm(request.POST, instance=movie)
-       if form.is_valid():
-           form.save()
-           return JsonResponse({"success": True})
-       else:
-           return JsonResponse({"success": False, "errors": form.errors})
-    def get(self, request, *args, **kwargs):
-        artist = get_object_or_404(Artist, pk=self.kwargs["pk"])
-        # Create a form instance with POST data
-        form = ArtistForm(request.POST, instance=movie)
-        if form.is_valid():
-            form.save()
-            return JsonResponse({"success": True})
-        else:
-            return JsonResponse({"success": False, "errors": form.errors})
+@login_required
+def concertsIndex(request):
+    if not Concert.objects.filter(name="Ode To You").exists():
+        Concert.objects.create(name="The Fifth World Tour", date="2023-4-18",venue="Great Strahov Stadium").save()
+        Concert.objects.create(name="Follow", date="2023-4-18",venue="Ohio Stadium").save()
+        Concert.objects.create(name="Ode To You", date="2023-4-18",venue="Beijing National Stadium").save()
+    return render(request, "concerts/concerts.html")
+
+class ArtistCreateView(LoginRequiredMixin, CreateView):
+    model = Artist
+    fields = ['name','concerts','songs']
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.add_message(
+        self.request, messages.SUCCESS,
+        'Artist "{artist_name}" has been created'.format(
+        artist_name=self.object.name))
+        return response
+    def get_success_url(self):
+        return reverse_lazy("concerts:artists", args=[self.object.id])
