@@ -13,6 +13,7 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+    {% url 'logout' as url_logout %}
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -40,7 +41,6 @@
                                         {% endif %}
         {% block content %}
         {% endblock content %}
-        {% url 'logout' as url_logout %}
     </div>
 </body>
 
