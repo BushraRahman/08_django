@@ -18,3 +18,8 @@ Aiden - worked on login stuff
 April 15
 Bushra - HW: Added form on concerts/artists that sends a POST request using Vue (but the request doesn't really have a purpose yet...)
 CW: Edited the CreateView
+
+April 19:
+Bushra - Added user authentication along with the login, logout buttons, deleted the previous form that sent a POST request, replaced it with a Vue form that can actually add an artist,
+made the /concerts url and the /songs url save instances of their respective models, changed concerts' DateTimeField to DateField, added the multiselect component so that it can be used for the concerts and songs fields, added urls to the index page
+
