@@ -15,6 +15,25 @@
 <body class="d-flex flex-column min-vh-100">
         {% block content %}
         {% endblock content %}
+        {% url 'logout' as url_logout %}
+    {% url 'login' as url_login %}
+    {% if user.is_authenticated %}
+                                            <div class="row">
+                                                <div class="col-auto d-flex align-items-center">
+                                                    login: {{user.username}}
+                                                </div>
+                                                <div class="col-auto">
+                                                    <form action="{{url_logout}}" method="post">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-primary ms-3 pull-right" id="logbtn">Logout</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="col">
+                                                <a class="btn btn-primary" href="{{ url_login }}" role="button">Login</a>
+                                            </div>
+                                        {% endif %}
     </div>
 </body>
 

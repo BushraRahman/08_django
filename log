@@ -17,3 +17,4 @@ Aiden - worked on login stuff
 
 April 15
 Bushra - HW: Added form on concerts/artists that sends a POST request using Vue (but the request doesn't really have a purpose yet...)
+CW: Edited the CreateView

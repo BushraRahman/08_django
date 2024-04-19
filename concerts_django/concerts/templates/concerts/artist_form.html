@@ -10,6 +10,8 @@
   <script>
        var ext_csrf_token = '{{ csrf_token }}'
        var ext_form = `{{ form.as_p | safe}}`
+       var ext_artist_dict = {{ artist_dict | safe }}
+       var ext_update_bis_url = '{% url 'concerts:artists' object.id %}'
   </script>
   {% vite_hmr_client %}
   {% vite_asset 'src/apps/artists_form/artists_form.js' %}
