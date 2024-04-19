@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load django_vite %}
 {% block content %}
-The template~
-</form>
 <br><br>
 <div id="app">
 <app></app>
@@ -10,6 +8,11 @@ The template~
 {% endblock content %}
 {% block js %}
 {{ block.super }}
+  <script>
+       var ext_songs_link = '{% url 'concerts:songs' %}'
+       var ext_concerts_link = '{% url 'concerts:concerts' %}'
+       var ext_artists_link = '{% url 'concerts:artists' %}'
+  </script>
 {% vite_hmr_client %}
 {% vite_asset 'src/apps/concerts_index/concerts_edit.js' %}
 {% endblock js %}

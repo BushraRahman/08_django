@@ -13,20 +13,18 @@ import datetime
 
 @login_required
 def index(request):
+    context = {"songs_link": reverse_lazy("concerts:songs"), "concerts_link": reverse_lazy("concerts:concerts"), "artists_link": reverse_lazy("concerts:artists")}
+    print(context)
     return render(request, "concerts/index.html")
 
 @login_required
 def songsIndex(request):
-    if request.method == 'POST':
-        loadSongs()
+    if not Song.objects.filter(title="Hypertonic").exists():
+        Song.objects.create(title="Hypertonic", duration="00:8:16",genre="pop").save()
+        Song.objects.create(title="Heartbeat", duration="00:08:30",genre="RNB").save()
+        Song.objects.create(title="DU DU DU", duration="00:02:26",genre="RNB").save()
     return render(request, "concerts/songs.html")
-
-@login_required
-def loadSongs():
-    if not Song.objects.filter(title="Run").exists():
-        Song.objects.create(title="Run", duration="00:10:30",genre="pop").save()
-        Song.objects.create(title="My House", duration="00:08:30",genre="RNB").save()
-        Song.objects.create(title="Pop", duration="00:02:26",genre="RNB").save()
+    
 # Create your views here.
 
 @login_required

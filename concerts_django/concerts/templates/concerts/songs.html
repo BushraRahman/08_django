@@ -1,18 +1,5 @@
 {% extends "base.html" %}
 {% load django_vite %}
 {% block content %}
-Songs!
-<form method="post">
-    {% csrf_token %}
-<button type='submit'>Load Songs!</button>
-</form>
-<br><br>
-<div id="app">
-<app></app>
-</div>
+Songs are now loaded!
 {% endblock content %}
-{% block js %}
-{{ block.super }}
-{% vite_hmr_client %}
-{% vite_asset 'src/apps/concerts_index/concerts_edit.js' %}
-{% endblock js %}
