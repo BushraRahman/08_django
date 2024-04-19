@@ -48,6 +48,7 @@
         <input type="submit" value="Save">
         </form>
     </div>
+    {{ concerts }}
 </template>
 <script>
 
@@ -60,11 +61,11 @@ export default {
 	    	csrf_token: ext_csrf_token,
 	    	form: ext_form,
             name: null,
-            concerts: "joe mama",
             songs: "Heya",
 	    	submitting_form: false,
 	    	form_error: [],
 	    	form_updated: "",
+            concerts: ext_concerts
 	}},
     methods: {
         submit_form_fetch(){

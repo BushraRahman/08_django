@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
+import datetime
 
 @login_required
 def index(request):
@@ -30,10 +31,10 @@ def loadSongs():
 
 @login_required
 def concertsIndex(request):
-    if not Concert.objects.filter(name="Ode To You").exists():
-        Concert.objects.create(name="The Fifth World Tour", date="2023-4-18",venue="Great Strahov Stadium").save()
-        Concert.objects.create(name="Follow", date="2023-4-18",venue="Ohio Stadium").save()
-        Concert.objects.create(name="Ode To You", date="2023-4-18",venue="Beijing National Stadium").save()
+    if not Concert.objects.filter(name="Ode To Who?").exists():
+        Concert.objects.create(name="The Fourth World Tour", date="2023-4-18",venue="Great Strahov Stadium").save()
+        Concert.objects.create(name="Lead", date="2021-3-7",venue="Ohio Stadium").save()
+        Concert.objects.create(name="Ode To Who?", date="2014-11-29",venue="Beijing National Stadium").save()
     return render(request, "concerts/concerts.html")
 
 class ArtistCreateView(LoginRequiredMixin, CreateView):
@@ -46,5 +47,13 @@ class ArtistCreateView(LoginRequiredMixin, CreateView):
         'Artist "{artist_name}" has been created'.format(
         artist_name=self.object.name))
         return response
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        concerts_list = []
+        for concert in Concert.objects.all():
+            concerts_list.append({"name": concert.name, "date": str(concert.date), "venue": concert.venue})
+        context["concerts"] = concerts_list
+        print("context", context)
+        return context
     def get_success_url(self):
         return reverse_lazy("concerts:artists")
