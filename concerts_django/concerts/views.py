@@ -7,6 +7,8 @@ from django.views.generic.edit import CreateView
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.contrib import messages
 
 @login_required
 def index(request):
@@ -45,4 +47,4 @@ class ArtistCreateView(LoginRequiredMixin, CreateView):
         artist_name=self.object.name))
         return response
     def get_success_url(self):
-        return reverse_lazy("concerts:artists", args=[self.object.id])
+        return reverse_lazy("concerts:artists")

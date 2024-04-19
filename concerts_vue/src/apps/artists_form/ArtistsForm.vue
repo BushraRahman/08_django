@@ -4,7 +4,7 @@
         This is the form coming from django, displayed in vue
     </div>
     <div>
-        <form method="post"><input type="hidden" name="csrfmiddlewaretoken" value="AGZGQ9DzT9dSLsiu2SDdEmXbTqZJImBLmKbWCndZvTRpkNijmUwb4x9AYDOlfflb">
+        <form method="post"><input type="hidden" name="csrfmiddlewaretoken" value="YPeT7T9BwGSV6QZXfHrM9BK8RFSqvrjCKTq9T7J18qwsFbZMzJkKzMWxWSH22k32">
         <p>
     <label for="id_name">Name:</label>
     <input type="text" name="name" maxlength="50" required="" id="id_name">
@@ -16,6 +16,12 @@
   <p>
     <label for="id_concerts">Concerts:</label>
     <select name="concerts" required="" id="id_concerts" multiple="">
+  <option value="2">Follow</option>
+
+  <option value="3">Ode To You</option>
+
+  <option value="1">The Fifth World Tour</option>
+
 </select>
     
     
@@ -42,10 +48,7 @@
         <input type="submit" value="Save">
         </form>
     </div>
-    <br><br>
-    
 </template>
-
 <script>
 
 export default {
