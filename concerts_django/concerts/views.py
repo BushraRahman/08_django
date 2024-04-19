@@ -51,8 +51,12 @@ class ArtistCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         concerts_list = []
         for concert in Concert.objects.all():
-            concerts_list.append({"name": concert.name, "date": str(concert.date), "venue": concert.venue})
+            concerts_list.append({"id": concert.id, "name": concert.name, "date": str(concert.date), "venue": concert.venue})
         context["concerts"] = concerts_list
+        songs_list = []
+        for song in Song.objects.all():
+            songs_list.append({"id": song.id, "title": song.title, "duration": str(song.duration), "genre": song.genre})
+        context["songs"] = songs_list
         print("context", context)
         return context
     def get_success_url(self):

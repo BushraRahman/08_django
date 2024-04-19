@@ -4,68 +4,55 @@
         This is the form coming from django, displayed in vue
     </div>
     <div>
-        <form method="post"><input type="hidden" name="csrfmiddlewaretoken" value="YPeT7T9BwGSV6QZXfHrM9BK8RFSqvrjCKTq9T7J18qwsFbZMzJkKzMWxWSH22k32">
+        <form method="post"><input type="hidden" name="csrfmiddlewaretoken" v-bind:value="csrf_token">
         <p>
     <label for="id_name">Name:</label>
     <input type="text" name="name" maxlength="50" required="" id="id_name">
     
     
   </p>
-
-  
-  <p>
+<p>
     <label for="id_concerts">Concerts:</label>
-    <select name="concerts" required="" id="id_concerts" multiple="">
-  <option value="2">Follow</option>
+    <select hidden name="concerts" required="" id="id_concerts" multiple="">
+        <option v-for="concert in concerts" :value="concert.id" selected=""></option>
+    </select>
+    <multiselect v-model="concerts_selected" :options="concerts" :multiple="false" :close-on-select="false" :clear-on-select="false" :preserve-search="true" placeholder="Choose the concert" label="name" track-by="name" :preselect-first="true" style="display:inline-block;width: 300px;padding-bottom:10px;padding-left:10px">
+        <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length" v-show="!isOpen">{{ values.length }} options selected</span></template>
+    </multiselect>
+</p>
 
-  <option value="3">Ode To You</option>
-
-  <option value="1">The Fifth World Tour</option>
-
-</select>
-    
-    
-  </p>
-
-  
-  <p>
+<p>
     <label for="id_songs">Songs:</label>
-    <select name="songs" required="" id="id_songs" multiple="">
-  <option value="1">Song object (1)</option>
-
-  <option value="4">Song object (4)</option>
-
-  <option value="5">Song object (5)</option>
-
-  <option value="6">Song object (6)</option>
-
-</select>
-    
-    
-      
-    
-  </p>
+    <select hidden name="songs" required="" id="id_songs" multiple="">
+        <option v-for="song in songs" :value="song.id" selected=""></option>
+    </select>
+    <multiselect v-model="songs_selected" :options="songs" :multiple="false" :close-on-select="false" :clear-on-select="false" :preserve-search="true" placeholder="Choose the song" label="title" track-by="title" :preselect-first="true" style="display:inline-block;width: 300px;padding-bottom:10px;padding-left:10px">
+        <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length" v-show="!isOpen">{{ values.length }} options selected</span></template>
+    </multiselect>
+</p>
         <input type="submit" value="Save">
         </form>
     </div>
-    {{ concerts }}
 </template>
 <script>
-
+import Multiselect from 'vue-multiselect'
 export default {
   name: 'App',
   components: {
+    Multiselect
   },
   data: function() {
   	return {
 	    	csrf_token: ext_csrf_token,
 	    	form: ext_form,
             name: null,
-            songs: "Heya",
 	    	submitting_form: false,
 	    	form_error: [],
 	    	form_updated: "",
-            concerts: ext_concerts
+            concerts: ext_concerts,
+            concerts_selected: null,
+            songs: ext_songs,
+            songs_selected: null
 	}},
     methods: {
         submit_form_fetch(){
@@ -121,3 +108,4 @@ export default {
     }
 }
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
